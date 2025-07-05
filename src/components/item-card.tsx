@@ -2,24 +2,9 @@ import Image from 'next/image'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
+import type { Item } from '@/payload-types'
 
-interface ItemCardProps {
-  titulo: string
-  slug: string
-  headerImage: string
-  stock: number
-  precio: number
-  oferta: number
-}
-
-export default function ItemCard({
-  titulo,
-  slug,
-  headerImage,
-  stock,
-  precio,
-  oferta,
-}: ItemCardProps) {
+export default function ItemCard({ item }: { item: Item }) {
   return (
     <Link href={'/' + slug}>
       <Card className="w-[300px] overflow-hidden">
