@@ -12,6 +12,10 @@ import type { CollectionConfig } from 'payload'
 
 export const Items: CollectionConfig = {
   slug: 'items',
+  labels: {
+    singular: 'Producto',
+    plural: 'Productos',
+  },
   access: {
     create: authenticated,
     delete: authenticated,
