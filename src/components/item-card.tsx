@@ -2,11 +2,18 @@ import Image from 'next/image'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
-import type { Item } from '@/payload-types'
+import type { Item, Media } from '@/payload-types'
 import { formatPrice } from '@/utils/formatPrice'
 
 export default function ItemCard({ item }: { item: Item }) {
   const stock = item.sizes.reduce((acc, variant) => acc + (variant.stock || 0), 0)
+
+  // Helper function to check if coverImage is a Media object
+  const isMedia = (image: number | Media | null | undefined): image is Media => {
+    return typeof image === 'object' && image !== null && 'url' in image
+  }
+
+  const imageUrl = isMedia(item.coverImage) ? item.coverImage.url : '/placeholder.svg'
 
   return (
     <Link href={'/' + item.id}>
@@ -14,7 +21,7 @@ export default function ItemCard({ item }: { item: Item }) {
         <CardHeader className="p-0">
           <div className="relative w-full aspect-square">
             <Image
-              src={item.coverImage?.url || '/placeholder.svg'}
+              src={imageUrl || '/placeholder.svg'}
               alt={item.name}
               layout="fill"
               objectFit="cover"

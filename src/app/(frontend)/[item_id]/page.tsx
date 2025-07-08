@@ -4,9 +4,9 @@ import { getItemById } from '@/utils/getItem'
 import { Button } from '@/components/ui/button'
 import ItemSwiper from './item-swiper'
 
-export default async function ItemPage({ params }: { params: { item_id: number } }) {
+export default async function ItemPage({ params }: { params: Promise<{ item_id: string }> }) {
   const { item_id } = await params
-  const item = await getItemById(item_id)
+  const item = await getItemById(Number(item_id))
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen w-screen">
