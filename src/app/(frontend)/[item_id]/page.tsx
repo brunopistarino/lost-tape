@@ -77,10 +77,6 @@ export default async function ItemPage({ params }: { params: Promise<{ item_id: 
             <RichText data={item.description} />
           </div>
         )}
-
-        <p className="mt-6 opacity-60">Métodos de pago: transferencia o efectivo.</p>
-        <p className="mt-6 opacity-60">Las compras se coordinan por mensajería privada.</p>
-        <p className="mt-6 opacity-60">No se hacen devoluciones.</p>
       </div>
     </div>
   )
