@@ -91,6 +91,12 @@ export const Items: CollectionConfig = {
       required: true,
     },
     {
+      name: 'coverImage',
+      label: 'Imagen de portada',
+      type: 'upload',
+      relationTo: 'media',
+    },
+    {
       name: 'images',
       label: 'Imágenes',
       type: 'array',
