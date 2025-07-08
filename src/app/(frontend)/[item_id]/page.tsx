@@ -8,6 +8,8 @@ export default async function ItemPage({ params }: { params: Promise<{ item_id: 
   const { item_id } = await params
   const item = await getItemById(Number(item_id))
 
+  const itemStock = item.sizes.reduce((acc, variant) => acc + (variant.stock || 0), 0)
+
   return (
     <div className="flex flex-col md:flex-row min-h-screen w-screen">
       {/* Galería de imágenes */}
@@ -47,7 +49,9 @@ export default async function ItemPage({ params }: { params: Promise<{ item_id: 
                       <td className="w-1/2 px-6 py-3 border-t border-r border-gray-400">
                         {size.size}
                       </td>
-                      <td className="w-1/2 px-6 py-3 border-t border-gray-400">{size.stock}</td>
+                      <td className="w-1/2 px-6 py-3 border-t border-gray-400">
+                        {size.stock != null && size.stock > 0 ? size.stock : 'Agotado'}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -62,7 +66,9 @@ export default async function ItemPage({ params }: { params: Promise<{ item_id: 
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Button className="w-full py-6 text-lg">Adquirir</Button>
+          <Button className="w-full py-6 text-lg" disabled={itemStock === 0}>
+            Adquirir
+          </Button>
         </a>
 
         {/* Descripción del producto */}
