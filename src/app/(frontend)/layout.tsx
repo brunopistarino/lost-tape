@@ -4,8 +4,8 @@ import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
 export const metadata = {
-  description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
+  description: 'Lost Tape',
+  title: 'Lost Tape',
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
